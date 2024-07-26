@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 
-public class AgentSimulation
+public class AgentRegistry
 {
     public int AgentCount { get { return m_agentList.Count; } }
 
     private List<IAgent> m_agentList;
 
-    public AgentSimulation()
+    public AgentRegistry()
     {
         m_agentList = new List<IAgent>();
     }

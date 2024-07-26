@@ -3,16 +3,16 @@ using Zenject;
 
 public class AgentSpawner : IInitializable, ITickable
 {
-    private readonly AgentSimulation m_agentSimulation;
+    private readonly AgentRegistry m_agentRegistry;
     private readonly Agent.Factory m_simpleAgentFactory;
     private readonly AgentSimulationSettings m_agentSimulationSettings;
 
     private float m_nextAgentSpawnDelay;
     private float m_lastAgentSpawnTime;
 
-    public AgentSpawner(AgentSimulation agentSimulation, Agent.Factory simpleAgentFactory, AgentSimulationSettings agentSimulationSettings)
+    public AgentSpawner(AgentRegistry agentRegistry, Agent.Factory simpleAgentFactory, AgentSimulationSettings agentSimulationSettings)
     {
-        m_agentSimulation = agentSimulation;
+        m_agentRegistry = agentRegistry;
         m_simpleAgentFactory = simpleAgentFactory;
         m_agentSimulationSettings = agentSimulationSettings;
     }
@@ -37,12 +37,10 @@ public class AgentSpawner : IInitializable, ITickable
     public void SpawnAgent()
     {
         Agent agent = m_simpleAgentFactory.Create();
-        m_agentSimulation.AddAgent(agent);
     }
 
     public void DespawnAgent(Agent agent)
     {
-        m_agentSimulation.RemoveAgent(agent);
         agent.Dispose();
     }
 
@@ -61,7 +59,7 @@ public class AgentSpawner : IInitializable, ITickable
         if (m_lastAgentSpawnTime + m_nextAgentSpawnDelay > Time.time)
             return false;
 
-        if (m_agentSimulation.AgentCount >= m_agentSimulationSettings.MaxAmountOfAgents)
+        if (m_agentRegistry.AgentCount >= m_agentSimulationSettings.MaxAmountOfAgents)
             return false;
 
         return true;

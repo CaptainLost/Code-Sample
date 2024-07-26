@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 public class AgentSimulation
 {
+    public int AgentCount { get { return m_agentList.Count; } }
+
     private List<IAgent> m_agentList;
 
     public AgentSimulation()

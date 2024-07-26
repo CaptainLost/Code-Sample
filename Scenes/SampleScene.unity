@@ -167,9 +167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_settings:
-    <StartAmountAgentsMin>k__BackingField: 2
-    <StartAmountAgentsMax>k__BackingField: 5
+    <StartAmountOfAgentsMin>k__BackingField: 2
+    <StartAmountOfAgentsMax>k__BackingField: 5
     <MaxAmountOfAgents>k__BackingField: 30
+    <AgentPrefab>k__BackingField: {fileID: -2585186032180554746, guid: efaf8094bcbea6b43b6937533f248aaf, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 385348177}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:

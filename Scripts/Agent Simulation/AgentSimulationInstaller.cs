@@ -15,5 +15,18 @@ public class AgentSimulationInstaller : MonoInstaller
         Container.Bind<AgentSimulation>()
             .AsSingle()
             .NonLazy();
+
+        Container.BindInterfacesAndSelfTo<AgentSpawner>()
+            .AsSingle()
+            .NonLazy();
+
+        Container.BindFactory<Agent, Agent.Factory>()
+            .FromPoolableMemoryPool<Agent, AgentPool>(poolBinder => poolBinder
+                .FromComponentInNewPrefab(m_settings.AgentPrefab));
+    }
+
+    class AgentPool : MonoPoolableMemoryPool<IMemoryPool, Agent>
+    {
+
     }
 }

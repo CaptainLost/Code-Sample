@@ -1,18 +1,21 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class AgentSimulation
 {
-    private readonly AgentSimulationSettings m_settings;
-
     private List<IAgent> m_agentList;
 
-    public AgentSimulation(AgentSimulationSettings settings)
+    public AgentSimulation()
     {
-        m_settings = settings;
-
         m_agentList = new List<IAgent>();
+    }
+
+    public void AddAgent(IAgent agent)
+    {
+        m_agentList.Add(agent);
+    }
+
+    public void RemoveAgent(IAgent agent)
+    {
+        m_agentList.Remove(agent);
     }
 }

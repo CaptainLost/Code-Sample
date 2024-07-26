@@ -5,9 +5,11 @@ using UnityEngine;
 public class AgentSimulationSettings
 {
     [field: SerializeField]
-    public int StartAmountAgentsMin { get; private set; }
+    public int StartAmountOfAgentsMin { get; private set; }
     [field: SerializeField]
-    public int StartAmountAgentsMax { get; private set; }
+    public int StartAmountOfAgentsMax { get; private set; }
     [field: SerializeField]
     public int MaxAmountOfAgents { get; private set; }
+    [field: SerializeField]
+    public Agent AgentPrefab { get; private set; }
 }

@@ -6,13 +6,14 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
 {
     private AgentRegistry m_agentRegistry;
     private IMemoryPool m_memoryPool;
-    private IDamagable m_damagable;
+
+    public IDamagable Damagable { get; private set; }
 
     [Inject]
     public void Construct(AgentRegistry agentRegistry, IDamagable damagable)
     {
         m_agentRegistry = agentRegistry;
-        m_damagable = damagable;
+        Damagable = damagable;
     }
 
     public void OnSpawned(IMemoryPool memoryPool)

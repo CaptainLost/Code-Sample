@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 public class AgentRegistry
 {
-    public int AgentCount { get { return m_agentList.Count; } }
-
     private List<IAgent> m_agentList;
+
+    public int AgentCount { get { return m_agentList.Count; } }
 
     public AgentRegistry()
     {

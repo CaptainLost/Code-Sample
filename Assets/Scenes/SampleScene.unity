@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_settings:
-    <StartAmountOfAgentsMin>k__BackingField: 2
-    <StartAmountOfAgentsMax>k__BackingField: 5
-    <MaxAmountOfAgents>k__BackingField: 30
+    <StartAmountOfAgentsMin>k__BackingField: 1
+    <StartAmountOfAgentsMax>k__BackingField: 1
+    <MaxAmountOfAgents>k__BackingField: 2
     <AgentSpawnDelayMin>k__BackingField: 2
     <AgentSpawnDelayMax>k__BackingField: 6
     <AgentPrefab>k__BackingField: {fileID: -2585186032180554746, guid: efaf8094bcbea6b43b6937533f248aaf, type: 3}

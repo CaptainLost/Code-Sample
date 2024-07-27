@@ -21,6 +21,7 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
         m_memoryPool = memoryPool;
 
         m_agentRegistry.AddAgent(this);
+        Damagable.ResetHealth();
     }
 
     public void OnDespawned()

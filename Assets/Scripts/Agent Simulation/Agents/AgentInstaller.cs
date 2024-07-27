@@ -9,6 +9,14 @@ public class AgentInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<AgentSettings>()
+            .FromInstance(m_settings)
+            .AsSingle();
+
+        Container.Bind<Agent>()
+            .FromComponentOnRoot()
+            .AsSingle();
+
+        Container.Bind<AgentDeathHandler>()
             .AsSingle();
 
         Container.Bind<IDamagable>()

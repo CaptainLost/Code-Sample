@@ -15,5 +15,7 @@ public class AgentSimulationSettings
     [field: SerializeField]
     public float AgentSpawnDelayMax { get; private set; }
     [field: SerializeField]
+    public Vector2 SimulationSize { get; private set; }
+    [field: SerializeField]
     public Agent AgentPrefab { get; private set; }
 }

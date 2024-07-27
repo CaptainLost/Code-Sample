@@ -172,6 +172,7 @@ MonoBehaviour:
     <MaxAmountOfAgents>k__BackingField: 2
     <AgentSpawnDelayMin>k__BackingField: 2
     <AgentSpawnDelayMax>k__BackingField: 6
+    <SimulationSize>k__BackingField: {x: 10, y: 10}
     <AgentPrefab>k__BackingField: {fileID: -2585186032180554746, guid: efaf8094bcbea6b43b6937533f248aaf, type: 3}
 --- !u!1 &519420028
 GameObject:

@@ -12,6 +12,9 @@ public class AgentSimulationInstaller : MonoInstaller
             .FromInstance(m_settings)
             .AsSingle();
 
+        Container.Bind<AgentSimulationBoundary>()
+            .AsSingle();
+
         Container.Bind<AgentRegistry>()
             .AsSingle()
             .NonLazy();

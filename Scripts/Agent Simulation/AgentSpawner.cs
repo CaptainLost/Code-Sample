@@ -36,7 +36,7 @@ public class AgentSpawner : IInitializable, ITickable
 
     public void SpawnAgent()
     {
-        Agent agent = m_simpleAgentFactory.Create();
+        m_simpleAgentFactory.Create();
     }
 
     public void DespawnAgent(Agent agent)

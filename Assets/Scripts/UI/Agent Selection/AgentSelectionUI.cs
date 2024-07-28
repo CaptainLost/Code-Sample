@@ -26,6 +26,7 @@ public class AgentSelectionUI : MonoBehaviour
     private void OnEnable()
     {
         m_signalBus.Subscribe<AgentSelectedSignal>(OnAgentSelected);
+        m_signalBus.Subscribe<AgentDeselectedSignal>(OnAgentDeselected);
         m_signalBus.Subscribe<AgentDamagedSignal>(OnAgentDamaged);
         m_signalBus.Subscribe<AgentDeathSignal>(OnAgentDeath);
     }
@@ -33,6 +34,7 @@ public class AgentSelectionUI : MonoBehaviour
     private void OnDisable()
     {
         m_signalBus.Unsubscribe<AgentSelectedSignal>(OnAgentSelected);
+        m_signalBus.Unsubscribe<AgentDeselectedSignal>(OnAgentDeselected);
         m_signalBus.Unsubscribe<AgentDamagedSignal>(OnAgentDamaged);
         m_signalBus.Unsubscribe<AgentDeathSignal>(OnAgentDeath);
     }
@@ -53,6 +55,13 @@ public class AgentSelectionUI : MonoBehaviour
 
         Open();
         RefreshUI();
+    }
+
+    private void OnAgentDeselected(AgentDeselectedSignal busEvent)
+    {
+        m_displayedAgent = null;
+
+        Close();
     }
 
     private void OnAgentDamaged(AgentDamagedSignal busEvent)

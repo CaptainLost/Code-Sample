@@ -19,12 +19,23 @@ public class AgentSelection : ITickable
 
     public void Select(AgentSelectable selectable)
     {
-        m_currentSelectable?.Deselect();
+        DeselectCurrent();
 
         m_currentSelectable = selectable;
         selectable.Select();
 
         m_signalBus.Fire(new AgentSelectedSignal(selectable.Agent));
+    }
+
+    public void DeselectCurrent()
+    {
+        if (m_currentSelectable == null)
+            return;
+
+        m_signalBus.Fire(new AgentDeselectedSignal(m_currentSelectable.Agent));
+
+        m_currentSelectable.Deselect();
+        m_currentSelectable = null;
     }
 
     // Old input system, no need for new
@@ -45,6 +56,13 @@ public class AgentSelection : ITickable
 
         if (agentSelectable == null)
             return;
+
+        if (agentSelectable == m_currentSelectable)
+        {
+            DeselectCurrent();
+
+            return;
+        }
 
         Select(agentSelectable);
     }

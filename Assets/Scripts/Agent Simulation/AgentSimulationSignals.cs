@@ -8,6 +8,16 @@ public struct AgentSelectedSignal
     }
 }
 
+public struct AgentDeselectedSignal
+{
+    public readonly IAgent Agent;
+
+    public AgentDeselectedSignal(IAgent agent)
+    {
+        Agent = agent;
+    }
+}
+
 public struct AgentDamagedSignal
 {
     public readonly IAgent Agent;

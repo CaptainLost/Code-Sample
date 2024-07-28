@@ -7,6 +7,7 @@ public class AgentSimulationSignalsInstaller : Installer<AgentSimulationSignalsI
         SignalBusInstaller.Install(Container);
 
         Container.DeclareSignal<AgentSelectedSignal>();
+        Container.DeclareSignal<AgentDeselectedSignal>();
         Container.DeclareSignal<AgentDamagedSignal>();
         Container.DeclareSignal<AgentDeathSignal>();
     }

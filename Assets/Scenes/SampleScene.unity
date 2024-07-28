@@ -433,8 +433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_settings:
-    <StartAmountOfAgentsMin>k__BackingField: 2
-    <StartAmountOfAgentsMax>k__BackingField: 6
+    <StartAmountOfAgentsMin>k__BackingField: 3
+    <StartAmountOfAgentsMax>k__BackingField: 5
     <MaxAmountOfAgents>k__BackingField: 30
     <AgentSpawnDelayMin>k__BackingField: 2
     <AgentSpawnDelayMax>k__BackingField: 6

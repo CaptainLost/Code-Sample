@@ -25,8 +25,15 @@ public class AgentSimulationInstaller : MonoInstaller
 
         Container.BindFactory<Agent, Agent.Factory>()
             .FromPoolableMemoryPool<Agent, AgentPool>(poolBinder => poolBinder
+                .WithInitialSize(10)
                 .FromComponentInNewPrefab(m_settings.AgentPrefab)
                 .UnderTransformGroup("Agents"));
+
+        Container.BindFactory<Explosion, Explosion.Factory>()
+            .FromPoolableMemoryPool<Explosion, ExplosionPool>(poolBinder => poolBinder
+            .WithInitialSize(5)
+            .FromComponentInNewPrefab(m_settings.ExplosionPrefab)
+            .UnderTransformGroup("Effects"));
 
         Container.BindInterfacesAndSelfTo<AgentSelection>()
             .AsSingle()
@@ -36,6 +43,11 @@ public class AgentSimulationInstaller : MonoInstaller
     }
 
     class AgentPool : MonoPoolableMemoryPool<IMemoryPool, Agent>
+    {
+
+    }
+
+    class ExplosionPool : MonoPoolableMemoryPool<IMemoryPool, Explosion>
     {
 
     }

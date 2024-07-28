@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace BehaviourTree
+namespace AIBehaviourTree
 {
     public class BehaviourNode
     {

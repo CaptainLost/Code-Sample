@@ -1,4 +1,4 @@
-﻿namespace BehaviourTree
+﻿namespace AIBehaviourTree
 {
     public enum BehaviourStatus
     {

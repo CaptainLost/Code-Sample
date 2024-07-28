@@ -1,3 +1,4 @@
+using AIBehaviourTree;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,10 @@ public class AgentInstaller : MonoInstaller
         Container.Bind<Agent>()
             .FromComponentOnRoot()
             .AsSingle();
+
+        Container.Bind<BehaviourTree>()
+            .AsSingle()
+            .WithArguments("Agent Tree");
 
         Container.Bind<AgentDeathHandler>()
             .AsSingle();

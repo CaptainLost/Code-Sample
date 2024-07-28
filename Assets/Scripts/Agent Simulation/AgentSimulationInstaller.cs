@@ -27,6 +27,10 @@ public class AgentSimulationInstaller : MonoInstaller
             .FromPoolableMemoryPool<Agent, AgentPool>(poolBinder => poolBinder
                 .FromComponentInNewPrefab(m_settings.AgentPrefab)
                 .UnderTransformGroup("Agents"));
+
+        Container.BindInterfacesAndSelfTo<AgentSelection>()
+            .AsSingle()
+            .NonLazy();
     }
 
     class AgentPool : MonoPoolableMemoryPool<IMemoryPool, Agent>

@@ -17,6 +17,8 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
 
     public IDamagable Damagable { get; private set; }
 
+    public IAgentData AgentData => throw new NotImplementedException();
+
     [Inject]
     public void Construct(AgentRegistry agentRegistry, AgentSimulationBoundary simulationBoundary, BehaviourTree behaviourTree, IDamagable damagable)
     {

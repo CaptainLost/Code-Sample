@@ -6,10 +6,10 @@ public class AgentSelectable : MonoBehaviour
     [SerializeField]
     private GameObject m_selectionVisualObject;
 
-    public Agent Agent { get; private set; }
+    public IAgent Agent { get; private set; }
 
     [Inject]
-    public void Construct(Agent agent)
+    public void Construct(IAgent agent)
     {
         Agent = agent;
     }

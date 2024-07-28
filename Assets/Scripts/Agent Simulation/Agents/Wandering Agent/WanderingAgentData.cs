@@ -1,6 +1,6 @@
-public class AgentData : IAgentData
+public class WanderingAgentData : IAgentData
 {
-    public AgentData()
+    public WanderingAgentData()
     {
         AgentName = AgentNameGenerator.GetRandomName();
     }

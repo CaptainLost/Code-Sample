@@ -1,7 +1,7 @@
 using AIBehaviourTree;
 using UnityEngine;
 
-public class PatrolStrategy : IBehaviourStrategy
+public class WanderStrategy : IBehaviourStrategy
 {
     private readonly Transform m_transform;
     private readonly float m_moveSpeed;
@@ -9,7 +9,7 @@ public class PatrolStrategy : IBehaviourStrategy
 
     private Vector2 m_moveDirection;
 
-    public PatrolStrategy(Transform transform, float moveSpeed, AgentSimulationBoundary simulationBoundary)
+    public WanderStrategy(Transform transform, float moveSpeed, AgentSimulationBoundary simulationBoundary)
     {
         m_transform = transform;
         m_simulationBoundary = simulationBoundary;

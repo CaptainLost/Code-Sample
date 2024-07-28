@@ -1,12 +1,12 @@
 using Zenject;
 
-public class AgentDeathHandler
+public class WanderingAgentDeathHandler: IDeathHandler
 {
-    private readonly Agent m_agent;
+    private readonly WanderingAgent m_agent;
     private readonly SignalBus m_signalBus;
     private readonly Explosion.Factory m_explosionFactory;
 
-    public AgentDeathHandler(Agent agent, SignalBus signalBus, Explosion.Factory explosionFactory)
+    public WanderingAgentDeathHandler(WanderingAgent agent, SignalBus signalBus, Explosion.Factory explosionFactory)
     {
         m_agent = agent;
         m_signalBus = signalBus;

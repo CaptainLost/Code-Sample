@@ -3,6 +3,9 @@ using Zenject;
 
 public class AgentSimulationCamera : MonoBehaviour
 {
+    [SerializeField]
+    private Vector2 m_cameraSizeOffset;
+
     private AgentSimulationBoundary m_simulationBoundary;
     private Camera m_camera;
 
@@ -12,6 +15,7 @@ public class AgentSimulationCamera : MonoBehaviour
         m_simulationBoundary = simulationBoundary;
     }
 
+    // Do camera updates one time, simulation size isn't consider to change
     private void Awake()
     {
         m_camera = GetComponent<Camera>();
@@ -33,8 +37,10 @@ public class AgentSimulationCamera : MonoBehaviour
 
     private void SetSizeToSimulationSize()
     {
-        float ortoHeight = m_simulationBoundary.SimulationSize.y * 0.5f;
-        float ortoWidth = (m_simulationBoundary.SimulationSize.x / m_camera.aspect) * 0.5f;
+        Vector2 cameraSimulationSize = m_simulationBoundary.SimulationSize + m_cameraSizeOffset;
+
+        float ortoHeight = cameraSimulationSize.y * 0.5f;
+        float ortoWidth = (cameraSimulationSize.x / m_camera.aspect) * 0.5f;
 
         m_camera.orthographicSize = Mathf.Max(ortoWidth, ortoHeight);
     }

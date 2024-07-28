@@ -1,15 +1,15 @@
 using UnityEngine;
 using Zenject;
 
-public class AgentCollision : MonoBehaviour
+public class WanderingAgentCollision : MonoBehaviour
 {
     [SerializeField]
     private float m_receivedDamage;
 
-    private Agent m_agent;
+    private WanderingAgent m_agent;
 
     [Inject]
-    public void Construct(Agent agent)
+    public void Construct(WanderingAgent agent)
     {
         m_agent = agent;
     }

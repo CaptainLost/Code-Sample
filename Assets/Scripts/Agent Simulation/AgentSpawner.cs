@@ -4,13 +4,13 @@ using Zenject;
 public class AgentSpawner : IInitializable, ITickable
 {
     private readonly AgentRegistry m_agentRegistry;
-    private readonly Agent.Factory m_simpleAgentFactory;
+    private readonly WanderingAgent.Factory m_simpleAgentFactory;
     private readonly AgentSimulationSettings m_agentSimulationSettings;
 
     private float m_nextAgentSpawnDelay;
     private float m_lastAgentSpawnTime;
 
-    public AgentSpawner(AgentRegistry agentRegistry, Agent.Factory simpleAgentFactory, AgentSimulationSettings agentSimulationSettings)
+    public AgentSpawner(AgentRegistry agentRegistry, WanderingAgent.Factory simpleAgentFactory, AgentSimulationSettings agentSimulationSettings)
     {
         m_agentRegistry = agentRegistry;
         m_simpleAgentFactory = simpleAgentFactory;
@@ -45,7 +45,7 @@ public class AgentSpawner : IInitializable, ITickable
         m_simpleAgentFactory.Create();
     }
 
-    public void DespawnAgent(Agent agent)
+    public void DespawnAgent(WanderingAgent agent)
     {
         agent.Dispose();
     }

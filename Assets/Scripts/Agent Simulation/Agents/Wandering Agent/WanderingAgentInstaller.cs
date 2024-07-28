@@ -2,26 +2,28 @@ using AIBehaviourTree;
 using UnityEngine;
 using Zenject;
 
-public class AgentInstaller : MonoInstaller
+public class WanderingAgentInstaller : MonoInstaller
 {
     [SerializeField]
-    private AgentSettings m_settings;
+    private WanderingAgentSettings m_settings;
 
     public override void InstallBindings()
     {
-        Container.Bind<AgentSettings>()
+        Container.Bind<WanderingAgentSettings>()
             .FromInstance(m_settings)
             .AsSingle();
 
-        Container.Bind<Agent>()
+        Container.Bind(typeof(IAgent), typeof(WanderingAgent))
+            .To(typeof(WanderingAgent))
             .FromComponentOnRoot()
             .AsSingle();
 
         Container.Bind<BehaviourTree>()
             .AsSingle()
-            .WithArguments("Agent Tree");
+            .WithArguments("Wandering Agent Tree");
 
-        Container.Bind<AgentDeathHandler>()
+        Container.Bind(typeof(IDeathHandler), typeof(WanderingAgentDeathHandler))
+            .To(typeof(WanderingAgentDeathHandler))
             .AsSingle();
 
         Container.Bind<IDamagable>()

@@ -17,7 +17,7 @@ public class AgentSimulationSettings
     [field: SerializeField]
     public Vector2 SimulationSize { get; private set; }
     [field: SerializeField]
-    public Agent AgentPrefab { get; private set; }
+    public WanderingAgent AgentPrefab { get; private set; }
     [field: SerializeField]
     public Explosion ExplosionPrefab { get; private set; }
 }

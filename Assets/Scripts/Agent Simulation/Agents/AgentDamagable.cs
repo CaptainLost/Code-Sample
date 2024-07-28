@@ -2,14 +2,14 @@ using Zenject;
 
 public class AgentDamagable : IDamagable
 {
-    private readonly Agent m_agent;
-    private readonly AgentDeathHandler m_deathHandler;
+    private readonly IAgent m_agent;
+    private readonly IDeathHandler m_deathHandler;
     private readonly SignalBus m_signalBus;
 
     public float CurrentHealth { get; private set; }
     public float MaxHealth { get; private set; }
 
-    public AgentDamagable(Agent agent, AgentSettings agentSettings, AgentDeathHandler deathHandler, SignalBus signalBus)
+    public AgentDamagable(IAgent agent, WanderingAgentSettings agentSettings, IDeathHandler deathHandler, SignalBus signalBus)
     {
         m_agent = agent;
         m_deathHandler = deathHandler;

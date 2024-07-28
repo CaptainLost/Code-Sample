@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 using AIBehaviourTree;
 
-public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
+public class WanderingAgent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
 {
     [SerializeField]
     private float m_moveSpeed;
@@ -13,8 +13,8 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
     private BehaviourTree m_behaviourTree;
     private IMemoryPool m_memoryPool;
 
-    private AgentData m_agentData;
-    private PatrolStrategy m_patrolStrategy;
+    private WanderingAgentData m_agentData;
+    private WanderStrategy m_wanderStrategy;
 
     public IDamagable Damagable { get; private set; }
     public IAgentData AgentData => m_agentData;
@@ -30,8 +30,8 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
 
     private void Awake()
     {
-        m_patrolStrategy = new PatrolStrategy(transform, m_moveSpeed, m_simulationBoundary);
-        BehaviourLeaf patrolLeaf = new BehaviourLeaf("Patrol", m_patrolStrategy);
+        m_wanderStrategy = new WanderStrategy(transform, m_moveSpeed, m_simulationBoundary);
+        BehaviourLeaf patrolLeaf = new BehaviourLeaf("Patrol", m_wanderStrategy);
         m_behaviourTree.AddChild(patrolLeaf);
     }
 
@@ -45,11 +45,11 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
         m_memoryPool = memoryPool;
 
         transform.position = m_simulationBoundary.GetRandomSimulationPos();
-        m_agentData = new AgentData();
+        m_agentData = new WanderingAgentData();
 
         m_agentRegistry.AddAgent(this);
         Damagable.ResetHealth();
-        m_patrolStrategy.SetRandomMoveDirection();
+        m_wanderStrategy.SetRandomMoveDirection();
     }
 
     public void OnDespawned()
@@ -62,7 +62,7 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
         m_memoryPool.Despawn(this);
     }
 
-    public class Factory : PlaceholderFactory<Agent>
+    public class Factory : PlaceholderFactory<WanderingAgent>
     {
 
     }

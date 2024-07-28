@@ -5,13 +5,12 @@ public class AgentSimulationBoundary
 {
     private AgentSimulationSettings m_simulationSettings;
 
-    public Vector2 SimulationSize { get; private set; }
+    public Vector2 SimulationSize => m_simulationSettings.SimulationSize;
 
     [Inject]
     public void Construct(AgentSimulationSettings simulationSettings)
     {
         m_simulationSettings = simulationSettings;
-        SimulationSize = simulationSettings.SimulationSize;
     }
 
     public Vector3 GetRandomSimulationPos()

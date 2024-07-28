@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class AgentSettings
+public class WanderingAgentSettings
 {
     [field: SerializeField]
     public float StartHealth;

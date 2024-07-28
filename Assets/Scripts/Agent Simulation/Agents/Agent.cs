@@ -13,11 +13,11 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
     private BehaviourTree m_behaviourTree;
     private IMemoryPool m_memoryPool;
 
+    private AgentData m_agentData;
     private PatrolStrategy m_patrolStrategy;
 
     public IDamagable Damagable { get; private set; }
-
-    public IAgentData AgentData => throw new NotImplementedException();
+    public IAgentData AgentData => m_agentData;
 
     [Inject]
     public void Construct(AgentRegistry agentRegistry, AgentSimulationBoundary simulationBoundary, BehaviourTree behaviourTree, IDamagable damagable)
@@ -32,8 +32,9 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
     {
         m_patrolStrategy = new PatrolStrategy(transform, m_moveSpeed, m_simulationBoundary);
         BehaviourLeaf patrolLeaf = new BehaviourLeaf("Patrol", m_patrolStrategy);
-
         m_behaviourTree.AddChild(patrolLeaf);
+
+        m_agentData = new AgentData();
     }
 
     private void Update()

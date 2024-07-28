@@ -39,7 +39,7 @@ public static class AgentNameGenerator
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.Append(m_names[randomNameIndex]);
-        stringBuilder.Append('_');
+        stringBuilder.Append(' ');
         stringBuilder.Append(m_surnames[randomSurnameIndex]);
 
         return stringBuilder.ToString();

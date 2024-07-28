@@ -1,13 +1,19 @@
+using Zenject;
+
 public class AgentDamagable : IDamagable
 {
+    private readonly Agent m_agent;
     private readonly AgentDeathHandler m_deathHandler;
+    private readonly SignalBus m_signalBus;
 
     public float CurrentHealth { get; private set; }
     public float MaxHealth { get; private set; }
 
-    public AgentDamagable(AgentSettings agentSettings, AgentDeathHandler deathHandler)
+    public AgentDamagable(Agent agent, AgentSettings agentSettings, AgentDeathHandler deathHandler, SignalBus signalBus)
     {
+        m_agent = agent;
         m_deathHandler = deathHandler;
+        m_signalBus = signalBus;
 
         MaxHealth = agentSettings.StartHealth;
 
@@ -22,6 +28,8 @@ public class AgentDamagable : IDamagable
     public void ReceiveDamage(float amountOfDamage)
     {
         CurrentHealth -= amountOfDamage;
+
+        m_signalBus.Fire(new AgentDamagedSignal(m_agent));
 
         if (IsDead())
         {

@@ -3,9 +3,28 @@ using Zenject;
 
 public class AgentSelection : ITickable
 {
+    private readonly SignalBus m_signalBus;
+
+    private AgentSelectable m_currentSelectable;
+
+    public AgentSelection(SignalBus signalBus)
+    {
+        m_signalBus = signalBus;
+    }
+
     public void Tick()
     {
         CheckSelection();
+    }
+
+    public void Select(AgentSelectable selectable)
+    {
+        m_currentSelectable?.Deselect();
+
+        m_currentSelectable = selectable;
+        selectable.Select();
+
+        m_signalBus.Fire(new AgentSelectedSignal(selectable.Agent));
     }
 
     // Old input system, no need for new
@@ -23,6 +42,10 @@ public class AgentSelection : ITickable
             return;
 
         AgentSelectable agentSelectable = raycastHit.collider.GetComponent<AgentSelectable>();
-        agentSelectable.Select();
+
+        if (agentSelectable == null)
+            return;
+
+        Select(agentSelectable);
     }
 }

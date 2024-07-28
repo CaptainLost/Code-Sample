@@ -31,6 +31,8 @@ public class AgentSimulationInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<AgentSelection>()
             .AsSingle()
             .NonLazy();
+
+        AgentSimulationSignalsInstaller.Install(Container);
     }
 
     class AgentPool : MonoPoolableMemoryPool<IMemoryPool, Agent>

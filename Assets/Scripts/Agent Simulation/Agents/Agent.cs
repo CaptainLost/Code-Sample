@@ -33,8 +33,6 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
         m_patrolStrategy = new PatrolStrategy(transform, m_moveSpeed, m_simulationBoundary);
         BehaviourLeaf patrolLeaf = new BehaviourLeaf("Patrol", m_patrolStrategy);
         m_behaviourTree.AddChild(patrolLeaf);
-
-        m_agentData = new AgentData();
     }
 
     private void Update()
@@ -47,6 +45,7 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
         m_memoryPool = memoryPool;
 
         transform.position = m_simulationBoundary.GetRandomSimulationPos();
+        m_agentData = new AgentData();
 
         m_agentRegistry.AddAgent(this);
         Damagable.ResetHealth();

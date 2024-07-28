@@ -14,8 +14,6 @@ public class PatrolStrategy : IBehaviourStrategy
         m_transform = transform;
         m_simulationBoundary = simulationBoundary;
         m_moveSpeed = moveSpeed;
-
-        GenerateRandomDirection();
     }
 
     // Infinite for now
@@ -30,6 +28,11 @@ public class PatrolStrategy : IBehaviourStrategy
     public void Reset()
     {
         
+    }
+
+    public void SetRandomMoveDirection()
+    {
+        m_moveDirection = Random.insideUnitCircle.normalized;
     }
 
     private void CheckBounce()
@@ -47,10 +50,5 @@ public class PatrolStrategy : IBehaviourStrategy
     private void PerformMove()
     {
         m_transform.position += new Vector3(m_moveDirection.x * m_moveSpeed * Time.deltaTime, m_moveDirection.y * m_moveSpeed * Time.deltaTime);
-    }
-
-    private void GenerateRandomDirection()
-    {
-        m_moveDirection = Random.insideUnitCircle.normalized;
     }
 }

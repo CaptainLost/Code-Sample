@@ -13,6 +13,8 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
     private BehaviourTree m_behaviourTree;
     private IMemoryPool m_memoryPool;
 
+    private PatrolStrategy m_patrolStrategy;
+
     public IDamagable Damagable { get; private set; }
 
     [Inject]
@@ -26,8 +28,8 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
 
     private void Awake()
     {
-        PatrolStrategy patrolStrategy = new PatrolStrategy(transform, m_moveSpeed, m_simulationBoundary);
-        BehaviourLeaf patrolLeaf = new BehaviourLeaf("Patrol", patrolStrategy);
+        m_patrolStrategy = new PatrolStrategy(transform, m_moveSpeed, m_simulationBoundary);
+        BehaviourLeaf patrolLeaf = new BehaviourLeaf("Patrol", m_patrolStrategy);
 
         m_behaviourTree.AddChild(patrolLeaf);
     }
@@ -45,6 +47,7 @@ public class Agent : MonoBehaviour, IAgent, IPoolable<IMemoryPool>, IDisposable
 
         m_agentRegistry.AddAgent(this);
         Damagable.ResetHealth();
+        m_patrolStrategy.SetRandomMoveDirection();
     }
 
     public void OnDespawned()
